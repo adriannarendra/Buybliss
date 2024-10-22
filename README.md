@@ -48,7 +48,7 @@ Boom! You're now officially a Buybliss developer. 🎉
 
 ## 📸 Screenshots (Coming Soon!)
 
-We’re working on adding some super sleek screenshots so you can feast your eyes on our stunning UI. Stay tuned!
+![Mockup of Buybliss](assets/images/mockup_eccomerce.png)
 
 ---
 
