@@ -48,7 +48,7 @@ Boom! You're now officially a Buybliss developer. 🎉
 
 ## 📸 Screenshots (Coming Soon!)
 
-![Mockup of Buybliss](assets/images/mockup_eccomerce.png)
+![Mockup of Buybliss](assets/images/mockup%20eccomerce.png)
 
 ---
 
