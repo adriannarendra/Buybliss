@@ -13,7 +13,7 @@ const kPrimaryGradientColor = LinearGradient(
 const kSecoundaryColor = Color(0xff979797);
 const kTextColor = Color.fromARGB(255, 0, 0, 0);
 const kAnimationDuration = Duration(milliseconds: 200);
-const inactiveColor =Color.fromARGB(255, 34, 34, 34);
+const inactiveColor = Color.fromARGB(255, 34, 34, 34);
 
 const Color inActiveIconColor = Color(0xffb6b6b6);
 
@@ -34,7 +34,7 @@ const String kAddressNullError = "Please enter your Address";
 final headingStyle = TextStyle(
   fontSize: getPropScreenWidth(28),
   fontWeight: FontWeight.bold,
-  color: Colors.black,
+  
   height: 1.5,
 );
 

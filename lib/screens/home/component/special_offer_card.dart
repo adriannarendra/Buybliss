@@ -112,7 +112,9 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(title, style: TextStyle(
           fontSize: getPropScreenWidth(18),
-          color: Colors.black,
+          color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         ),),
         Text("See More", style: TextStyle(
           fontSize: getPropScreenWidth(14),

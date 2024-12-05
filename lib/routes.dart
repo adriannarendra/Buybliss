@@ -3,6 +3,7 @@ import 'package:ui_ecommerce/model/product_data.dart';
 import 'package:ui_ecommerce/screens/carts/carts_screen.dart';
 import 'package:ui_ecommerce/screens/complit/complit_screen.dart';
 import 'package:ui_ecommerce/screens/details/detail_screen.dart';
+import 'package:ui_ecommerce/screens/favourite/favourite_screen.dart';
 import 'package:ui_ecommerce/screens/forgot/forgot_screen.dart';
 import 'package:ui_ecommerce/screens/home/home.dart';
 import 'package:ui_ecommerce/screens/login_succses/succses_screen.dart';
@@ -27,4 +28,5 @@ final Map<String, WidgetBuilder> routes = {
   },
   ProfileScreen.routesName: (context)  => ProfileScreen(),
   CartsScreen.routesName: (context) => CartsScreen(),
+  FavouriteScreen.routesName: (context) => FavouriteScreen(),
 };

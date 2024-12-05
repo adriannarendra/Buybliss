@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ui_ecommerce/constant.dart';
 import 'package:ui_ecommerce/enums.dart';
+import 'package:ui_ecommerce/screens/favourite/favourite_screen.dart';
 import 'package:ui_ecommerce/screens/home/home.dart';
 import 'package:ui_ecommerce/screens/profile/profile.dart';
 
@@ -16,11 +17,11 @@ class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       type: BottomNavigationBarType.fixed,
       currentIndex: MenuState.values.indexOf(menu),
       selectedItemColor: kPrimaryColor,
-      unselectedItemColor: inactiveColor,
+      // unselectedItemColor: inactiveColor,
       showSelectedLabels: true,
       showUnselectedLabels: true,
       onTap: (index) {
@@ -31,6 +32,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
           case MenuState.profile:
             _navigateWithFadeTransition(context, ProfileScreen());
             break;
+          case MenuState.favorite:
+            _navigateWithFadeTransition(context, FavouriteScreen());
           default:
             break;
         }

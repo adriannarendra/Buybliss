@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:ui_ecommerce/constant.dart';
 import 'package:ui_ecommerce/model/product_data.dart';
@@ -6,7 +5,9 @@ import 'package:ui_ecommerce/sized_config.dart';
 
 class ItemPoularProduct extends StatelessWidget {
   const ItemPoularProduct({
-    super.key, required this.product, required this.press,
+    super.key,
+    required this.product,
+    required this.press,
   });
 
   final Product product;
@@ -14,7 +15,7 @@ class ItemPoularProduct extends StatelessWidget {
 
   // Jika kSecondaryColor berasal dari constant.dart, pastikan sudah terdefinisi.
   // Jika belum, kita bisa inisialisasi default seperti berikut
-  final Color kSecondaryColor = Colors.grey;  // Atau warna lain yang sesuai
+  final Color kSecondaryColor = Colors.grey; // Atau warna lain yang sesuai
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +43,14 @@ class ItemPoularProduct extends StatelessWidget {
                 ),
               ),
               SizedBox(height: getPropScreenHeight(15)),
-              Text(product.title),
+              Text(
+                product.title,
+                style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
+              ),
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

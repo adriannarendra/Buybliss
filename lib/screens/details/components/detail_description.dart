@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 import 'package:ui_ecommerce/constant.dart';
 import 'package:ui_ecommerce/model/product_data.dart';
 import 'package:ui_ecommerce/sized_config.dart';
+import 'package:ui_ecommerce/state_managements/favourite_provider.dart';
 
-class DetailDescription extends StatelessWidget {
+class DetailDescription extends StatefulWidget {
   const DetailDescription({
     super.key,
     required this.product,
@@ -13,6 +15,11 @@ class DetailDescription extends StatelessWidget {
   final Product product;
 
   @override
+  State<DetailDescription> createState() => _DetailDescriptionState();
+}
+
+class _DetailDescriptionState extends State<DetailDescription> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -20,11 +27,14 @@ class DetailDescription extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: getPropScreenWidth(20)),
           child: Text(
-            product.title,
+            widget.product.title,
             style: TextStyle(
-                fontSize: getPropScreenWidth(20),
-                fontWeight: FontWeight.bold,
-                color: Colors.black),
+              fontSize: getPropScreenWidth(20),
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
           ),
         ),
         Align(
@@ -37,11 +47,18 @@ class DetailDescription extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(getPropScreenWidth(20)),
                     bottomLeft: Radius.circular(getPropScreenWidth(20)))),
-            child: Icon(
-              Icons.favorite,
-              color: product.isFavourite
-                  ? Colors.red
-                  : kSecoundaryColor.withOpacity(0.5),
+            child: Consumer<FavouriteProvider>(
+              builder: (context, favourite, child) => InkWell(
+                onTap: () {
+                  favourite.toggleFavouriteStatus(widget.product.id);
+                },
+                child: Icon(
+                  Icons.favorite,
+                  color: widget.product.isFavourite
+                      ? Colors.red
+                      : kSecoundaryColor.withOpacity(0.5),
+                ),
+              ),
             ),
           ),
         ),
@@ -51,7 +68,7 @@ class DetailDescription extends StatelessWidget {
             right: getPropScreenWidth(64),
           ),
           child: ReadMoreText(
-            product.description,
+            widget.product.description,
             trimMode: TrimMode.Line,
             trimLines: 2,
             colorClickableText: kPrimaryColor,
@@ -59,6 +76,11 @@ class DetailDescription extends StatelessWidget {
             trimExpandedText: "\n< See less",
             moreStyle: seeMoreStyle,
             lessStyle: seeMoreStyle,
+            style: TextStyle(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
           ),
         )
       ],

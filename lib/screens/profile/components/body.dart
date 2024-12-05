@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ui_ecommerce/screens/profile/components/profile_assets.dart';
 import 'package:ui_ecommerce/screens/sing_in/sing_in_screen.dart';
 import 'package:ui_ecommerce/sized_config.dart';
+import 'package:ui_ecommerce/state_managements/auth_provider.dart';
 
 class Body extends StatelessWidget {
   const Body({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final email = Provider.of<AuthProvider>(context).email;
+
     return SingleChildScrollView(
       child: Column(
         children: [
           ProfilePicture(),
+          if (email != null)
+            Text(
+              email,
+              style: TextStyle(
+                fontSize: getPropScreenWidth(16),
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).textTheme.bodyLarge?.color
+              ),
+            ),
           SizedBox(height: getPropScreenWidth(20)),
           ItemButtonProfile(
             svgIcon: "assets/icons/User Icon.svg",

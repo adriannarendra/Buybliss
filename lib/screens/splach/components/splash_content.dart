@@ -23,7 +23,7 @@ class SplashContent extends StatelessWidget {
         ),
         Text(text, 
         style: TextStyle(
-            color: kTextColor,
+            color: Theme.of(context).textTheme.bodyLarge?.color,
             fontSize: getPropScreenWidth(14),
           ),
         ),

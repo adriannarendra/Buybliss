@@ -5,7 +5,8 @@ import 'package:ui_ecommerce/sized_config.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({
-    super.key, required this.cart,
+    super.key,
+    required this.cart,
   });
 
   final Cart cart;
@@ -38,7 +39,14 @@ class ItemCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(cart.product.title),
+            Text(
+              cart.product.title,
+              style: TextStyle(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black,
+              ),
+            ),
             SizedBox(
               width: getPropScreenWidth(10),
             ),
@@ -54,7 +62,11 @@ class ItemCard extends StatelessWidget {
                 TextSpan(
                     text: "x${cart.numOfItem}",
                     style: TextStyle(
-                        fontSize: getPropScreenWidth(15), color: kTextColor))
+                      fontSize: getPropScreenWidth(15),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                    ))
               ]),
             ),
           ],

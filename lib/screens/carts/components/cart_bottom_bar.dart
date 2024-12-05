@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:ui_ecommerce/components/my_button.dart';
 import 'package:ui_ecommerce/constant.dart';
 import 'package:ui_ecommerce/sized_config.dart';
+import 'package:ui_ecommerce/state_managements/cart_provider.dart';
 
 class CartBottomBar extends StatelessWidget {
   const CartBottomBar({
@@ -19,12 +21,18 @@ class CartBottomBar extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-          color: Colors.white,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? const Color.fromARGB(255,33,31,37)
+              : Colors.white,
+          // (33,31,37,255)
           boxShadow: [
             BoxShadow(
                 offset: Offset(0, -15),
                 blurRadius: 20,
-                color: Color(0xffdadada).withOpacity(0.30)),
+                color: Theme.of(context).brightness == Brightness.dark
+              ? const Color.fromARGB(255,33,31,37).withOpacity(0.30)
+              : Color(0xffdadada).withOpacity(0.30)
+              ),
           ]),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -46,6 +54,11 @@ class CartBottomBar extends StatelessWidget {
               Spacer(),
               Text(
                 "Add Voucher Code",
+                style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                ),
               ),
               SizedBox(
                 width: 10,
@@ -56,19 +69,36 @@ class CartBottomBar extends StatelessWidget {
           SizedBox(
             height: getPropScreenWidth(20),
           ),
-          Row(
-            children: [
-              Text.rich(TextSpan(children: const [
-                TextSpan(text: "Total\n"),
-                TextSpan(
-                    text: "\$377.15",
-                    style: TextStyle(fontSize: 16, color: Colors.black))
-              ])),
-              Spacer(),
-              SizedBox(
-                  width: getPropScreenWidth(190),
-                  child: MyButton(text: "Check Out", press: () {}))
-            ],
+          Consumer<CartProvider>(
+            builder: (context, cart, child) => Row(
+              children: [
+                Text.rich(TextSpan(children: [
+                  TextSpan(
+                      text: "Total\n",
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      )),
+                  TextSpan(
+                      text: "\$${cart.totalPrice}",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      ))
+                ])),
+                Spacer(),
+                SizedBox(
+                    width: getPropScreenWidth(190),
+                    child: MyButton(
+                        text: "Check Out",
+                        press: () {
+                          cart.clearCart();
+                        }))
+              ],
+            ),
           ),
         ],
       ),

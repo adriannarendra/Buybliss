@@ -13,6 +13,9 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? const Color.fromARGB(255,20,18,24)
+            : Colors.white,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
@@ -21,6 +24,9 @@ class DetailScreen extends StatelessWidget {
             Icons.arrow_back_ios_new_rounded,
             size: 30,
           ),
+          color: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         ),
         actions: [
           Padding(

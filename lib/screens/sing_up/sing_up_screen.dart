@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_ecommerce/screens/sing_up/component/body.dart';
 
-
 class SignUpScreen extends StatelessWidget {
   static String routesName = "/sign_up";
   const SignUpScreen({super.key});
@@ -10,9 +9,18 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Sign Up"),
-        centerTitle: true,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark ?  Colors.black : Colors.
+        white,
+        title: Text(
+          "Sign Up",
+          style: TextStyle(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
         ),
+        centerTitle: true,
+      ),
       body: Body(),
     );
   }

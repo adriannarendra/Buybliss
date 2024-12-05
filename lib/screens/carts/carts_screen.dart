@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ui_ecommerce/screens/carts/components/cart_bottom_bar.dart';
+import 'package:ui_ecommerce/sized_config.dart';
+import 'package:ui_ecommerce/state_managements/cart_provider.dart';
 
 import 'components/body.dart';
 
@@ -18,7 +21,14 @@ class CartsScreen extends StatelessWidget {
 
   AppBar appBar(BuildContext context) {
     return AppBar(
+      centerTitle: true,
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+                  ? const Color.fromARGB(255,20,18,24)
+                  : Colors.white,
       leading: IconButton(
+        color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -26,6 +36,18 @@ class CartsScreen extends StatelessWidget {
       title: Column(
         children: [
           Text("Your Cart", style: Theme.of(context).textTheme.bodyLarge),
+          Consumer<CartProvider>(
+            builder: (context, cart, child) => Text(
+              "${cart.cartitems.length} items",
+              style: TextStyle(
+                  fontSize: getPropScreenWidth(12),
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+                  ),
+            ),
+          )
         ],
       ),
     );
